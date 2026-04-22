@@ -15,4 +15,16 @@ export class BooksService {
   getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(booksApiPrefix);
   }
+
+  searchBooks(query: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${booksApiPrefix}?q=${encodeURIComponent(query)}`);
+  }
+
+  findBookById(bookId: number): Observable<Book> {
+    return this.http.get<Book>(`${booksApiPrefix}/${bookId}`);
+  }
+
+  saveBook(book: Book): Observable<Book> {
+    return this.http.put<Book>(`${booksApiPrefix}/${book.id}`, book);
+  }
 }

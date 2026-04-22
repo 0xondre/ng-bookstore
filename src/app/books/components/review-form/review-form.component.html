@@ -1,0 +1,63 @@
+<section class="card mt-4">
+  <div class="card-body">
+    <h3 class="card-title">Add review</h3>
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="d-flex flex-column gap-3 mt-3">
+      <div>
+        <label for="review-author" class="form-label">Author</label>
+        <input
+          id="review-author"
+          type="text"
+          formControlName="author"
+          class="form-control"
+          [class.is-invalid]="isInvalid('author')"
+        >
+        <div class="invalid-feedback">Author is required.</div>
+      </div>
+
+      <div>
+        <label for="review-title" class="form-label">Title</label>
+        <input
+          id="review-title"
+          type="text"
+          formControlName="title"
+          class="form-control"
+          [class.is-invalid]="isInvalid('title')"
+        >
+        <div class="invalid-feedback">Title is required.</div>
+      </div>
+
+      <div>
+        <label for="review-description" class="form-label">Content</label>
+        <textarea
+          id="review-description"
+          rows="4"
+          formControlName="description"
+          class="form-control"
+          [class.is-invalid]="isInvalid('description')"
+        ></textarea>
+        <div class="invalid-feedback">Content is required.</div>
+      </div>
+
+      <div>
+        <label for="review-rate" class="form-label">Rate</label>
+        <input
+          id="review-rate"
+          type="number"
+          min="1"
+          max="5"
+          formControlName="rate"
+          class="form-control"
+          [class.is-invalid]="isInvalid('rate')"
+        >
+        <div class="invalid-feedback">Rate must be between 1 and 5.</div>
+      </div>
+
+      <div>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid || isSaving">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

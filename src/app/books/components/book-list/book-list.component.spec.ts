@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookListComponent } from './book-list.component';
 import {ActivatedRoute} from "@angular/router";
+import { BooksService } from '../../services/books.service';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -22,7 +23,13 @@ describe('BookListComponent', () => {
     await TestBed.configureTestingModule({
     imports: [BookListComponent],
     providers: [
-        { provide: ActivatedRoute, useValue: activatedRouteMock }
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
+        {
+          provide: BooksService,
+          useValue: {
+            searchBooks: () => []
+          }
+        }
     ]
 })
     .compileComponents();
